@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <property name="schemaName" value="meetupsv13"></property>
+    <property name="author=" value="db-designer"></property>
+    <changeSet id="v1-01-01" author="${author}">
+    
+ <createTable schemaName="${schemaName}" tableName="Interest">
+	<column name="IntId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+ 	<column name="InterestName" type="INTEGER" />
+   
+     <column name="IconPath" type="VARCHAR(250)" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Group">
+	<column name="GroupId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="GroupName" type="VARCHAR(250)" />
+    
+      <column name="Pincode" type="BIGINT" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="User">
+	<column name="UserId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="EmailId" type="VARCHAR(250)" />
+    
+     <column name="FirstName" type="VARCHAR(250)" />
+    
+     <column name="LastName" type="VARCHAR(250)" />
+    
+     <column name="ProfileName" type="VARCHAR(250)" />
+    
+     <column name="BirthDate" type="DATE" />
+    
+     <column name="MobileNumber" type="VARCHAR(250)" />
+    
+     <column name="Bio" type="VARCHAR(250)" />
+    
+      <column name="Pincode" type="VARCHAR(250)" />
+    
+     <column name="CreatedDate" type="TIMESTAMP" />
+    
+     <column name="Address" type="VARCHAR(250)" />
+    
+     <column name="Password" type="VARCHAR(250)" />
+    
+     <column name="IsVerified" type="BOOLEAN" />
+    
+     <column name="Otp" type="VARCHAR(250)" />
+    
+     <column name="LastLoginDate" type="TIMESTAMP" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Event">
+	<column name="EventId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Title" type="VARCHAR(250)" />
+    
+     <column name="StartDate" type="TIMESTAMP" />
+    
+     <column name="StartTime" type="TIME" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+     <column name="Venue" type="VARCHAR(250)" />
+    
+     <column name="EndDate" type="TIMESTAMP" />
+    
+     <column name="EndDateTime" type="TIME" />
+    
+     <column name="Website" type="VARCHAR(250)" />
+    
+ 	<column name="PrimaryInterest" type="INTEGER" />
+   
+      <column name="IsFree" type="BOOLEAN" />
+    
+ 	<column name="Status" type="INTEGER" />
+   
+     <column name="EventLink" type="VARCHAR(250)" />
+    
+     <column name="Pincode" type="BIGINT" />
+    
+     <column name="MapLink" type="VARCHAR(250)" />
+    
+     <column name="City" type="VARCHAR(250)" />
+    
+     <column name="Cost" type="DECIMAL" />
+    
+ 	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Document">
+	<column name="DocId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="Description" type="VARCHAR(250)" />
+    
+     <column name="DocType" type="VARCHAR(250)" />
+    
+     <column name="AddedDate" type="TIMESTAMP" />
+    
+     <column name="DocLocation" type="VARCHAR(250)" />
+    
+ 	<column name="Content" type="BINARY"/>
+	<column name="DocFileType" type="VARCHAR(100)"/>
+	
+</createTable>
+ <createTable schemaName="${schemaName}" tableName="Child">
+	<column name="ChildId" type="SERIAL" autoIncrement="true" >
+        <constraints nullable="false" primaryKey="true"/>
+    </column>
+     <column name="Name" type="VARCHAR(250)" />
+    
+     <column name="DateOfBirth" type="DATE" />
+    
+     <column name="ProfileName" type="VARCHAR(250)" />
+    
+  	<column name="Gender" type="INTEGER" />
+   
+     <column name="AvatarName" type="VARCHAR(250)" />
+    
+     <column name="CreatedDate" type="TIMESTAMP" />
+    
+ 	
+</createTable>
+	
+  <createTable schemaName="${schemaName}" tableName="UserMyGroups">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserId" type="INTEGER" />
+	<column name="GroupId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="EventRegisteredUsers">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="EventId" type="INTEGER" />
+	<column name="UserId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="GroupContacts">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="GroupId" type="INTEGER" />
+	<column name="UserId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="UserRegisteredEvents">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserId" type="INTEGER" />
+	<column name="EventId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="ChildChildInterest">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="ChildId" type="INTEGER" />
+	<column name="ChildInterest" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="EventOtherInterests">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="EventId" type="INTEGER" />
+	<column name="OtherInterests" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="UserFavorites">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserId" type="INTEGER" />
+	<column name="EventId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="UserChildren">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserId" type="INTEGER" />
+	<column name="ChildId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="GroupInterests">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="GroupId" type="INTEGER" />
+	<column name="Interests" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="GroupMembers">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="GroupId" type="INTEGER" />
+	<column name="UserId" type="INTEGER" />
+</createTable>
+  <createTable schemaName="${schemaName}" tableName="UserLanguages">
+	<column name="Id" type="SERIAL" autoIncrement="true">
+		<constraints primaryKey="true" nullable="false"/>
+	</column>
+	<column name="UserId" type="INTEGER" />
+	<column name="Languages" type="INTEGER" />
+</createTable>
+
+ 
+	<addForeignKeyConstraint baseTableName="UserMyGroups" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="Group_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="UserMyGroups" baseTableSchemaName="${schemaName}"  baseColumnNames="GroupId" constraintName="Group_GroupId_fk"
+	                                  referencedTableName="Group" referencedTableSchemaName="${schemaName}" referencedColumnNames="GroupId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="EventRegisteredUsers" baseTableSchemaName="${schemaName}"  baseColumnNames="EventId" constraintName="User_EventId_fk"
+	                                  referencedTableName="Event" referencedTableSchemaName="${schemaName}" referencedColumnNames="EventId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="EventRegisteredUsers" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="User_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="GroupContacts" baseTableSchemaName="${schemaName}"  baseColumnNames="GroupId" constraintName="User_GroupId_fk"
+	                                  referencedTableName="Group" referencedTableSchemaName="${schemaName}" referencedColumnNames="GroupId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="GroupContacts" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="User_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="UserRegisteredEvents" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="Event_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="UserRegisteredEvents" baseTableSchemaName="${schemaName}"  baseColumnNames="EventId" constraintName="Event_EventId_fk"
+	                                  referencedTableName="Event" referencedTableSchemaName="${schemaName}" referencedColumnNames="EventId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="ChildChildInterest" baseColumnNames="ChildId" constraintName="Child_ChildChildInterest_fk" referencedTableName="Child"
+                                 	referencedColumnNames="ChildId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="EventOtherInterests" baseColumnNames="EventId" constraintName="Event_EventOtherInterests_fk" referencedTableName="Event"
+                                 	referencedColumnNames="EventId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="UserFavorites" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="Event_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="UserFavorites" baseTableSchemaName="${schemaName}"  baseColumnNames="EventId" constraintName="Event_EventId_fk"
+	                                  referencedTableName="Event" referencedTableSchemaName="${schemaName}" referencedColumnNames="EventId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="UserChildren" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="Child_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="UserChildren" baseTableSchemaName="${schemaName}"  baseColumnNames="ChildId" constraintName="Child_ChildId_fk"
+	                                  referencedTableName="Child" referencedTableSchemaName="${schemaName}" referencedColumnNames="ChildId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="GroupInterests" baseColumnNames="GroupId" constraintName="Group_GroupInterests_fk" referencedTableName="Group"
+                                 	referencedColumnNames="GroupId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableName="GroupMembers" baseTableSchemaName="${schemaName}"  baseColumnNames="GroupId" constraintName="User_GroupId_fk"
+	                                  referencedTableName="Group" referencedTableSchemaName="${schemaName}" referencedColumnNames="GroupId"/>
+	                                  
+	<addForeignKeyConstraint baseTableName="GroupMembers" baseTableSchemaName="${schemaName}"  baseColumnNames="UserId" constraintName="User_UserId_fk"
+	                                  referencedTableName="User" referencedTableSchemaName="${schemaName}" referencedColumnNames="UserId"/>
+ 
+ 
+	<addForeignKeyConstraint baseTableSchemaName="${schemaName}" baseTableName="UserLanguages" baseColumnNames="UserId" constraintName="User_UserLanguages_fk" referencedTableName="User"
+                                 	referencedColumnNames="UserId" referencedTableSchemaName="${schemaName}"/>
+ 
+	
+ 
+	<addColumn tableName="Interest" schemaName="${schemaName}">
+	    <column name="InterestIcon" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="Interest" baseColumnNames="InterestIcon" baseTableSchemaName="${schemaName}" constraintName="Interest_Icon_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addColumn tableName="Group" schemaName="${schemaName}">
+	    <column name="GroupOwner" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="Group" baseColumnNames="GroupOwner" baseTableSchemaName="${schemaName}" constraintName="Group_Owner_fk" referencedTableName="User"
+	                                 referencedColumnNames="UserId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addColumn tableName="User" schemaName="${schemaName}">
+	    <column name="UserProfilePhoto" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="User" baseColumnNames="UserProfilePhoto" baseTableSchemaName="${schemaName}" constraintName="User_ProfilePhoto_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+ 
+	<addColumn tableName="Event" schemaName="${schemaName}">
+	    <column name="EventMainImage" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="Event" baseColumnNames="EventMainImage" baseTableSchemaName="${schemaName}" constraintName="Event_MainImage_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+
+	<addColumn tableName="Event" schemaName="${schemaName}">
+	    <column name="EventOrganiser" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="Event" baseColumnNames="EventOrganiser" baseTableSchemaName="${schemaName}" constraintName="Event_Organiser_fk" referencedTableName="User"
+	                                 referencedColumnNames="UserId" referencedTableSchemaName="${schemaName}"/>
+ 
+  
+	<addColumn tableName="Child" schemaName="${schemaName}">
+	    <column name="ChildChildProfilePhoto" type="INTEGER"/>
+	</addColumn>
+	<addForeignKeyConstraint baseTableName="Child" baseColumnNames="ChildChildProfilePhoto" baseTableSchemaName="${schemaName}" constraintName="Child_ChildProfilePhoto_fk" referencedTableName="Document"
+	                                 referencedColumnNames="DocId" referencedTableSchemaName="${schemaName}"/>
+ 
+	    </changeSet>
+</databaseChangeLog>

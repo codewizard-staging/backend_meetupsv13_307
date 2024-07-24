@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Model">
+            <EntityType HasStream="false" Name="Child">
+                <Key>
+                    <PropertyRef Name="ChildId"/>
+                </Key>
+                <Property Name="ChildId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="DateOfBirth" Type="Edm.Date" isUnique="false"/>
+                <Property Name="ProfileName" Type="Edm.String" isUnique="false"/>
+                <Property Name="ChildInterest" Type="Collection(Model.InterestEnum)" isUnique="false"/>
+                <Property Name="Gender" Type="Model.Gender" isUnique="false"/>
+                <Property Name="AvatarName" Type="Edm.String" isUnique="false"/>
+                <Property Name="CreatedDate" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <NavigationProperty Name="ChildProfilePhoto" Type="Model.Document"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Interest">
+                <Key>
+                    <PropertyRef Name="IntId"/>
+                </Key>
+                <Property Name="IntId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="InterestName" Type="Model.InterestEnum" isUnique="false"/>
+                <Property Name="IconPath" Type="Edm.String" isUnique="false"/>
+                <NavigationProperty Name="Icon" Type="Model.Document"/>
+            </EntityType>
+            <EntityType HasStream="true" Name="Document">
+                <Key>
+                    <PropertyRef Name="DocId"/>
+                </Key>
+                <Property Name="DocId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Name" Type="Edm.String" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+                <Property Name="DocType" Type="Edm.String" isUnique="false"/>
+                <Property Name="AddedDate" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <Property Name="DocLocation" Type="Edm.String" isUnique="false"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="User">
+                <Key>
+                    <PropertyRef Name="UserId"/>
+                </Key>
+                <Property Name="UserId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="EmailId" Type="Edm.String" isUnique="false"/>
+                <Property Name="FirstName" Type="Edm.String" isUnique="false"/>
+                <Property Name="LastName" Type="Edm.String" isUnique="false"/>
+                <Property Name="ProfileName" Type="Edm.String" isUnique="false"/>
+                <Property Name="BirthDate" Type="Edm.Date" isUnique="false"/>
+                <Property Name="MobileNumber" Type="Edm.String" isUnique="false"/>
+                <Property Name="Bio" Type="Edm.String" isUnique="false"/>
+                <Property Name="Languages" Type="Collection(Model.Lang)" isUnique="false"/>
+                <Property Name="Pincode" Type="Edm.String" isUnique="false"/>
+                <Property Name="CreatedDate" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <Property Name="Address" Type="Edm.String" isUnique="false"/>
+                <Property Name="Password" Type="Edm.String" isUnique="false"/>
+                <Property Name="IsVerified" Type="Edm.Boolean" isUnique="false"/>
+                <Property Name="Otp" Type="Edm.String" isUnique="false"/>
+                <Property Name="LastLoginDate" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <NavigationProperty Name="ProfilePhoto" Type="Model.Document"/>
+                <NavigationProperty Name="Favorites" Type="Collection(Model.Event)"/>
+                <NavigationProperty Name="RegisteredEvents" Type="Collection(Model.Event)"/>
+                <NavigationProperty Name="Children" Type="Collection(Model.Child)"/>
+                <NavigationProperty Name="MyGroups" Type="Collection(Model.Group)"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Event">
+                <Key>
+                    <PropertyRef Name="EventId"/>
+                </Key>
+                <Property Name="EventId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="Title" Type="Edm.String" isUnique="false"/>
+                <Property Name="StartDate" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <Property Name="StartTime" Type="Edm.TimeOfDay" isUnique="false"/>
+                <Property Name="Description" Type="Edm.String" isUnique="false"/>
+                <Property Name="Venue" Type="Edm.String" isUnique="false"/>
+                <Property Name="EndDate" Type="Edm.DateTimeOffset" isUnique="false"/>
+                <Property Name="EndDateTime" Type="Edm.TimeOfDay" isUnique="false"/>
+                <Property Name="Website" Type="Edm.String" isUnique="false"/>
+                <Property Name="PrimaryInterest" Type="Model.InterestEnum" isUnique="false"/>
+                <Property Name="OtherInterests" Type="Collection(Model.InterestEnum)" isUnique="false"/>
+                <Property Name="IsFree" Type="Edm.Boolean" isUnique="false"/>
+                <Property Name="Status" Type="Model.Status" isUnique="false"/>
+                <Property Name="EventLink" Type="Edm.String" isUnique="false"/>
+                <Property Name="Pincode" Type="Edm.Int64" isUnique="false"/>
+                <Property Name="MapLink" Type="Edm.String" isUnique="false"/>
+                <Property Name="City" Type="Edm.String" isUnique="false"/>
+                <Property Name="Cost" Type="Edm.Decimal" isUnique="false"/>
+                <NavigationProperty Name="MainImage" Type="Model.Document"/>
+                <NavigationProperty Name="RegisteredUsers" Type="Collection(Model.User)"/>
+                <NavigationProperty Name="Organiser" Type="Model.User"/>
+            </EntityType>
+            <EntityType HasStream="false" Name="Group">
+                <Key>
+                    <PropertyRef Name="GroupId"/>
+                </Key>
+                <Property Name="GroupId" Type="Edm.Int32" isUnique="false"/>
+                <Property Name="GroupName" Type="Edm.String" isUnique="false"/>
+                <Property Name="Interests" Type="Collection(Model.InterestEnum)" isUnique="false"/>
+                <Property Name="Pincode" Type="Edm.Int64" isUnique="false"/>
+                <NavigationProperty Name="Owner" Type="Model.User"/>
+                <NavigationProperty Name="Members" Type="Collection(Model.User)"/>
+                <NavigationProperty Name="Contacts" Type="Collection(Model.User)"/>
+            </EntityType>
+            <EntityContainer Name="Container">
+                <EntitySet Name="Childs" EntityType="Model.Child">
+                    <NavigationPropertyBinding Path="ChildProfilePhoto" Target="Documents"/>
+                </EntitySet>
+                <EntitySet Name="Interests" EntityType="Model.Interest">
+                    <NavigationPropertyBinding Path="Icon" Target="Documents"/>
+                </EntitySet>
+                <EntitySet Name="Documents" EntityType="Model.Document"/>
+                <EntitySet Name="Users" EntityType="Model.User">
+                    <NavigationPropertyBinding Path="ProfilePhoto" Target="Documents"/>
+                    <NavigationPropertyBinding Path="Favorites" Target="Events"/>
+                    <NavigationPropertyBinding Path="RegisteredEvents" Target="Events"/>
+                    <NavigationPropertyBinding Path="Children" Target="Childs"/>
+                    <NavigationPropertyBinding Path="MyGroups" Target="Groups"/>
+                </EntitySet>
+                <EntitySet Name="Events" EntityType="Model.Event">
+                    <NavigationPropertyBinding Path="MainImage" Target="Documents"/>
+                    <NavigationPropertyBinding Path="RegisteredUsers" Target="Users"/>
+                    <NavigationPropertyBinding Path="Organiser" Target="Users"/>
+                </EntitySet>
+                <EntitySet Name="Groups" EntityType="Model.Group">
+                    <NavigationPropertyBinding Path="Owner" Target="Users"/>
+                    <NavigationPropertyBinding Path="Members" Target="Users"/>
+                    <NavigationPropertyBinding Path="Contacts" Target="Users"/>
+                </EntitySet>
+            </EntityContainer>
+            <EnumType Name="Lang">
+                <Member Name="English" Value="0"/>
+                <Member Name="Spanish" Value="1"/>
+                <Member Name="Hindi" Value="2"/>
+                <Member Name="French" Value="3"/>
+            </EnumType>
+            <EnumType Name="InterestEnum">
+                <Member Name="Football" Value="0"/>
+                <Member Name="Travel" Value="1"/>
+                <Member Name="Food" Value="2"/>
+                <Member Name="Reading" Value="3"/>
+                <Member Name="Fitness" Value="4"/>
+            </EnumType>
+            <EnumType Name="Currency">
+                <Member Name="USD" Value="0"/>
+                <Member Name="INR" Value="1"/>
+                <Member Name="SGD" Value="2"/>
+            </EnumType>
+            <EnumType Name="Gender">
+                <Member Name="DONTWANTTODISCLOSE" Value="0"/>
+                <Member Name="MALE" Value="1"/>
+                <Member Name="FEMALE" Value="2"/>
+            </EnumType>
+            <EnumType Name="Status">
+                <Member Name="Started" Value="0"/>
+                <Member Name="Passed" Value="1"/>
+                <Member Name="OnGoing" Value="2"/>
+                <Member Name="NotStarted" Value="3"/>
+                <Member Name="Draft" Value="4"/>
+                <Member Name="Submitted" Value="5"/>
+                <Member Name="Approved" Value="6"/>
+            </EnumType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
